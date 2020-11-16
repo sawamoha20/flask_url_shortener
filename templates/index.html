@@ -8,9 +8,19 @@
     <title>mosouab Url shortener</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+          {{message}}
+        </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     <form action="/" method="POST" >
         <div class="form-group">
-            <input class="form-control" type="url" name="main-url" id="main-url">
+            <input class="form-control" type="text" name="main-url" id="main-url" pattern="[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" required>
+            <input class="form-control"  name="short-url" id="short-url">
             <button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="white" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
               </svg>
@@ -31,9 +41,9 @@
             <tr>
               <th scope="row">{{i.id}}</th>
               <td><a href="{{i.URl}}">{{i.URl}}</a></td>
-              <td><a href="{{i.shrt_value}}">{{i.shrt_value}}</a></td>
+              <td><a href="http://127.0.0.1:5000/{{i.shrt_value}}" target="_blank">{{i.shrt_value}}</a></td>
               <td>@mdo</td>
-              <td><a class="btn btn-danger btn-sm" href="/delete">Delete</a></td>
+              <td><a class="btn btn-danger btn-sm" href="{{ url_for('delete', id=i.id) }}">Delete</a></td>
             </tr>
           {% endfor %}
         </tbody>
