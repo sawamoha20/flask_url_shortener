@@ -80,6 +80,12 @@ def list():
         links.append({"URl": link.URl , "short_value": link.shrt_value})
     return jsonify({'links' : links})
 
+@app.route('/api/delete/<id>')
+def api_delete(id):
+    link = URLS.query.get_or_404(id)
+    db.session.delete(link)
+    db.session.commit()
+    return 'deleted' ,202
 
 if __name__ == "__main__":
     app.secret_key = 'SLrs5ThKt9z'
