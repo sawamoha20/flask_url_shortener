@@ -43,7 +43,7 @@
               <td><a href="{{i.URl}}">{{i.URl}}</a></td>
               <td><a href="http://127.0.0.1:5000/{{i.shrt_value}}" target="_blank">{{i.shrt_value}}</a></td>
               <td>@mdo</td>
-              <td><a class="btn btn-danger btn-sm" href="{{ url_for('delete', id=i.id) }}">Delete</a></td>
+              <td><a class="btn btn-danger btn-sm" href="{{ url_for('api_delete', id=i.id) }}">Delete</a></td>
             </tr>
           {% endfor %}
         </tbody>
