@@ -85,8 +85,7 @@ def api_delete(id):
     link = URLS.query.get_or_404(id)
     db.session.delete(link)
     db.session.commit()
-    return 'deleted' ,202
-
+    return redirect(url_for('index'))
 if __name__ == "__main__":
     app.secret_key = 'SLrs5ThKt9z'
     app.run(host='0.0.0.0',debug = True)
