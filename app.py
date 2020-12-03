@@ -59,7 +59,7 @@ def delete(id):
     db.session.delete(link)
     db.session.commit()
     flash("URL Deleted!")
-    return redirect('/')
+    return redirect(url_for('index'))
 
 #api endpoints
 
